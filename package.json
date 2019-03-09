@@ -1,0 +1,17 @@
+{
+  "name": "personal-website-hook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "“Menushka <“contact@menushka.ca”>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "x-hub-signature": "^1.2.0"
+  }
+}
