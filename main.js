@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const webhookMiddleware = require('x-hub-signature').middleware;
-const exec = require('child_process').exec;
+const spawn = require('child_process').spawn;
 
 const NAME = "personal-website-hook";
 const PORT = 3000;
@@ -24,7 +24,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.post('/push', function(request, response){
-  const payload = request.body;
+  const updateProcess = spawn("./update.sh", { stdio: 'inherit' });
   response.status(200).send('OK');
 });
 
