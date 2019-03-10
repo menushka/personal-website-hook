@@ -80,3 +80,5 @@ typings/
 .dynamodb/
 
 paths.sh
+server.cert
+server.key

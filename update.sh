@@ -1,27 +1,53 @@
-#!/bin/sh
+#!/bin/bash
 # Load environment variables
 . ./paths.sh
 
+# Determine current system
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
 # Colors
-COLOR_GREEN='\x1b[32m'
-COLOR_RED='\x1b[31m'
-COLOR_NC='\x1b[0m'
+if [ ${machine} == Linux ]; then
+  COLOR_GREEN='\e[32m'
+  COLOR_RED='\e[31m'
+  COLOR_NC='\e[0m'
+elif [ ${machine} == Mac ]; then
+  COLOR_GREEN='\x1b[32m'
+  COLOR_RED='\x1b[31m'
+  COLOR_NC='\x1b[0m'
+else
+  COLOR_GREEN=''
+  COLOR_RED=''
+  COLOR_NC=''
+fi
+
+function output() {
+  if [ ${machine} == Linux ]; then
+    echo -e $1
+  else
+    echo $1
+  fi
+}
 
 function log() {
-  echo "$COLOR_GREEN$1$COLOR_NC"
+  output "$COLOR_GREEN$1$COLOR_NC"
 }
 
 function error() {
-  echo "$COLOR_RED$1$COLOR_NC"
-  echo $COLOR_RED"Site update failed."$COLOR_NC
+  output "$COLOR_RED$1$COLOR_NC"
+  output $COLOR_RED"Site update failed."$COLOR_NC
   log "============================================================"
   exit 1
 }
 
 # Tell shell script to exit 
 set -e
-
-echo 
 
 # Build latest version from git
 log "============================================================"

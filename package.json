@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "pm2 start main.js || node main.js"
+    "start": "pm2 start main.js --name personal-website-hook || node main.js"
   },
   "author": "“Menushka <“contact@menushka.ca”>",
   "license": "ISC",
