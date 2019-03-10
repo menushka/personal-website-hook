@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "pm2 start main.js || node main.js"
   },
   "author": "“Menushka <“contact@menushka.ca”>",
   "license": "ISC",
